@@ -1,7 +1,9 @@
 import React from 'react'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
-export default function FeaturedMovie({item}) {
+const FeaturedMovie = (props) => {
+
+    const { item } = props;
 
     let firstDate =new Date(item.first_air_date);
     let genres = [];
@@ -32,3 +34,5 @@ export default function FeaturedMovie({item}) {
         </>
     )
 }
+
+export default FeaturedMovie

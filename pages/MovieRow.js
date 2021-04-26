@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 
-export default function MovieRow({title, items}) {
+const MovieRow = (props) => {
+
+    const { title, items } = props
 
     const [scrollX, setScrollX] = useState(0)
 
@@ -48,3 +50,5 @@ export default function MovieRow({title, items}) {
         </>
     )
 }
+
+export default MovieRow

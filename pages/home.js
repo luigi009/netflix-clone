@@ -4,7 +4,7 @@ import MovieRow from './MovieRow';
 import FeaturedMovie from './FeaturedMovie';
 import Header from './Header';
 
-export default function home() {
+const home = () => {
 
     const [movieList, setMovieList] = useState([]);
     const [featuredData, setFeaturedData] = useState(null);
@@ -71,3 +71,5 @@ export default function home() {
         </>
     )
 }
+
+export default home
