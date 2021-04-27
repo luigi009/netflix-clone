@@ -4,6 +4,8 @@ import MovieRow from './MovieRow';
 import FeaturedMovie from './FeaturedMovie';
 import Header from './Header';
 
+const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 const home = () => {
 
     const [movieList, setMovieList] = useState([]);
