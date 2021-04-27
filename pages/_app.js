@@ -1,3 +1,4 @@
+import 'tailwindcss/tailwind.css'
 import '../style/global.css'
 import { Provider } from 'next-auth/client'
 
