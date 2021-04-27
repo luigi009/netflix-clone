@@ -3,7 +3,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 const FeaturedMovie = (props) => {
 
-    const { item, date, genres, backdropPath, originalName, voteAverage, numberOfSeasons, overview } = props;
+    const { date, genres, backdropPath, originalName, voteAverage, numberOfSeasons, overview } = props;
 
     let firstDate =new Date(date);
     let genresArray = [];
