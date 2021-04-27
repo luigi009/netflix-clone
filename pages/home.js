@@ -72,7 +72,7 @@ const home = () => {
 
               {movieList.length <= 0 &&
                 <div className="loading fixed left-0 right-0 top-0 bottom-0 z-[99] bg-black flex justify-center items-center">
-                    <img src="https://media.wired.com/photos/592744d3f3e2356fd800bf00/master/w_2000,c_limit/Netflix_LoadTime.gif" alt="Carregando" />
+                    <img src={prefix + 'https://media.wired.com/photos/592744d3f3e2356fd800bf00/master/w_2000,c_limit/Netflix_LoadTime.gif'} alt="Carregando" />
                 </div>
               }
 
