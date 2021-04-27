@@ -4,7 +4,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 
 const MovieRow = (props) => {
 
-    const { title, items } = props
+    const { title, items, results } = props
 
     const [scrollX, setScrollX] = useState(0)
 
@@ -38,8 +38,8 @@ const MovieRow = (props) => {
                     </div>
                 </div>
                 <div className="movieRow--listarea overflow-x-hidden pl-7">
-                    <div className="movieRow--list" style={{marginLeft: scrollX, width: items.results.length * 250}}>
-                        {items.results.length > 0 && items.results.map((item, key) => (
+                    <div className="movieRow--list" style={{marginLeft: scrollX, width: results.length * 250}}>
+                        {results.length > 0 && results.map((item, key) => (
                             <div key={key} className="movieRow--item inline-block w-[250px]">
                                 <img className="w-auto cursor-pointer transition duration-[0.2s] ease-in-out transform scale-[0.9] hover:scale-[1]" src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt={item.original_title} />
                             </div>

@@ -48,11 +48,23 @@ const home = () => {
 
               <Header black={blackHeader} />
 
-              {featuredData && <FeaturedMovie item={featuredData} />}
+              {
+                featuredData 
+                    && 
+                <FeaturedMovie 
+                item={featuredData} 
+                overview={featuredData.overview} 
+                numberOfSeasons={featuredData.number_of_seasons} 
+                voteAverage={featuredData.vote_average} 
+                originalName={featuredData.original_name} 
+                backdropPath={featuredData.backdrop_path} 
+                genres={featuredData.genres} 
+                date={featuredData.first_air_date} />
+                }
 
               <section className="lists mt-[-250px]">
                   {movieList.map((item, key) => (
-                      <MovieRow key={key} title={item.title} items={item.items} />
+                      <MovieRow key={key} title={item.title} results={item.items.results} items={item.items} />
                   ))}
               </section>
 
