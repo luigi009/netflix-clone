@@ -79,7 +79,7 @@ const home = () => {
             <footer className="mt-7 mb-7 text-center">
                     Feito por Luigi Fanaro<br />
                     Direitos de imagem para Netflix<br />
-                    Dados pegos do site Themoviedb.org
+                    Os dados foram utilizados do site Themoviedb.org
             </footer> 
           </div> 
         </>
