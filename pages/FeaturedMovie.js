@@ -24,7 +24,7 @@ const FeaturedMovie = (props) => {
                       </div>
                       <div className="featured--description overflow-ellipsis overflow-hidden whitespace-nowrap mt-4 sm:mr-3 sm:text-lg text-[#999] sm:max-w-[40%]">{overview}</div>
                       <div className="featured--buttons mt-4">
-                          <a className="cursor-pointer featured--watchbutton inline-block sm:text-2xl font-bold p-5 mr-3 rounded-md no-underline bg-white text-black opacity-100 hover:opacity-70 transition duration-[0.2s] ease-in-out"> <PlayArrowIcon /> Assistir</a>
+                          <a className="cursor-pointer featured--watchbutton inline-block sm:text-2xl font-bold p-5 mr-3 rounded-md no-underline bg-white text-black opacity-100 hover:opacity-70 transition duration-[0.2s] ease-in-out"> <PlayArrowIcon className="w-[24px] h-[24px]" /> Assistir</a>
                           <a className="cursor-pointer featured--mylistbutton inline-block sm:text-2xl font-bold p-5 mr-3 rounded-md no-underline bg-[#333] text-white opacity-100 hover:opacity-70 transition duration-[0.2s] ease-in-out">+ Minha Lista</a>
                       </div>
                       <div className="featured--genres mt-4 sm:text-lg text-[#999]"><strong>Gêneros:</strong> {genresArray.join(', ')}</div>

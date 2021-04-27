@@ -33,10 +33,10 @@ const MovieRow = (props) => {
                 <h2 className="ml-7 mb-1 font-bold text-2xl max-w-lg tracking-wide">{title}</h2>
                 <div className="movieRow--left">
                     <div onClick={handleLeftArrow} className="movieRow--left z-[99] transition duration-[0.5s] ease-in-out lg:opacity-0 cursor-pointer overflow-hidden flex justify-center items-center absolute w-[40px] h-[375px] bg-black bg-opacity-50 left-0">
-                        <NavigateBeforeIcon style={{fontSize: 50}} />
+                        <NavigateBeforeIcon className="w-[50px] h-[50px]" style={{fontSize: 50}} />
                     </div>
                     <div onClick={handleRighttArrow} className="movieRow--right z-[99] transition duration-[0.5s] ease-in-out lg:opacity-0 cursor-pointer overflow-hidden flex justify-center items-center absolute w-[40px] h-[375px] bg-black bg-opacity-50 right-0">
-                        <NavigateNextIcon style={{fontSize: 50}} />
+                        <NavigateNextIcon className="w-[50px] h-[50px]" style={{fontSize: 50}} />
                     </div>
                 </div>
                 <div className="movieRow--listarea overflow-x-hidden pl-7">
