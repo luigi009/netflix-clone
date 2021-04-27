@@ -5,11 +5,13 @@ export default function Home() {
 
   const [ session, loading ] = useSession()
 
+  const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
   return (
     <div className="sm:flex flex-col items-center justify-center min-h-screen bg-netflix" style={{'backgroundImage': 'linear-gradient(rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)), url(/img/hero-bg.jpg)'}}>
       <Head>
         <title>Netflix Clone</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href={prefix + '/favicon.ico'}/>
         <link rel="preconnect" href="https://fonts.gstatic.com" /> 
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" /> 
       </Head>
