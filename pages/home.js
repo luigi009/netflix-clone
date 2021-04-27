@@ -64,7 +64,7 @@ const home = () => {
 
               <section className="lists mt-[-250px]">
                   {movieList.map((item, key) => (
-                      <MovieRow key={key} title={item.title} results={item.items.results} items={item.items} />
+                      <MovieRow key={key} title={item.title} resultsNumber={item.items.results.length} results={item.items.results} items={item.items} />
                   ))}
               </section>
 
