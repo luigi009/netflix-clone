@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
+import Movie from './Movie'
 
-const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
-
-const MovieRow = (props) => {
-
-    const { title, results, resultsNumber } = props
-
+const MovieRow = ({ title, results, resultsNumber }) => {
     const [scrollX, setScrollX] = useState(0)
 
     const handleLeftArrow = () => {
@@ -41,11 +37,16 @@ const MovieRow = (props) => {
                 </div>
                 <div className="movieRow--listarea overflow-x-hidden pl-7">
                     <div className="movieRow--list" style={{marginLeft: scrollX, width: resultsNumber * 250}}>
-                        {resultsNumber > 0 && results.map((item, key) => (
-                            <div key={key} className="movieRow--item inline-block w-[250px]">
-                                <img className="w-auto cursor-pointer transition duration-[0.2s] ease-in-out transform scale-[0.9] hover:scale-[1]" src={prefix + `https://image.tmdb.org/t/p/w300${item.poster_path}`} alt={item.original_title} />
-                            </div>
-                        ))}
+                        {resultsNumber > 0 && results.map((item, index) => {
+                            return (
+                            <> 
+                                <Movie
+                                    key={index}
+                                    item={item}
+                                />
+                            </>
+                            )
+                        })}
                     </div>
                 </div>
             </div>

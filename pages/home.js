@@ -19,10 +19,10 @@ const home = () => {
             setMovieList(list);
 
             //Featured Data
-            let originals = list.filter(i => i.slug === 'Originals');
+            let originals = list.filter(i => i.slug === 'Action');
             let randomChosen = Math.floor(Math.random() * (originals[0].items.results.length - 1));
             let chosen = originals[0].items.results[randomChosen];
-            let chosenInfo = await getMovieInfo(chosen.id, 'tv')
+            let chosenInfo = await getMovieInfo(chosen.id, 'movie')
             setFeaturedData(chosenInfo);
         }
         loadAll();
@@ -54,14 +54,15 @@ const home = () => {
                 featuredData 
                     && 
                 <FeaturedMovie 
-                item={featuredData} 
-                overview={featuredData.overview} 
-                numberOfSeasons={featuredData.number_of_seasons} 
-                voteAverage={featuredData.vote_average} 
-                originalName={featuredData.original_name} 
-                backdropPath={featuredData.backdrop_path} 
-                genres={featuredData.genres} 
-                date={featuredData.first_air_date} />
+                movie={featuredData}
+                featureId={featuredData?.id} 
+                overview={featuredData?.overview} 
+                numberOfSeasons={featuredData?.number_of_seasons} 
+                voteAverage={featuredData?.vote_average} 
+                originalName={featuredData?.original_name} 
+                backdropPath={featuredData?.backdrop_path} 
+                genres={featuredData?.genres} 
+                date={featuredData?.release_date} />
                 }
 
               <section className="lists mt-[-250px]">
