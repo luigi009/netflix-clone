@@ -37,7 +37,7 @@ const MovieRow = ({ title, results, resultsNumber }) => {
                 </div>
                 <div className="movieRow--listarea overflow-x-hidden pl-7">
                     <div className="movieRow--list" style={{marginLeft: scrollX, width: resultsNumber * 250}}>
-                        {resultsNumber.length && results.map((item, index) => {
+                        {resultsNumber && results.map((item, index) => {
                             return (
                             <> 
                                 <Movie
