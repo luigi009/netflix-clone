@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from 'next/router'
 
-function Movie({ item }) {
+function Movie({ item, poster }) {
 
 const router = useRouter()
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
@@ -22,8 +22,8 @@ const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
         >
           <img
             className="w-auto cursor-pointer transition duration-[0.2s] ease-in-out transform scale-[0.9] hover:scale-[1]"
-            src={prefix + `https://image.tmdb.org/t/p/w300${item.poster_path}`}
-            alt={item.original_title}
+            src={prefix + `https://image.tmdb.org/t/p/w300${poster}`}
+            alt={item?.original_title}
           />
         </a>
       </div>

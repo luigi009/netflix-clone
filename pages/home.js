@@ -55,7 +55,7 @@ const home = () => {
                     && 
                 <FeaturedMovie 
                 movie={featuredData}
-                title={featuredData.title}
+                title={featuredData?.title}
                 featureId={featuredData?.id} 
                 overview={featuredData?.overview} 
                 numberOfSeasons={featuredData?.number_of_seasons} 
