@@ -3,7 +3,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
 import { useRouter } from 'next/router'
 
-const FeaturedMovie = ({ genres, backdropPath, originalName, numberOfSeasons, overview, featureId, movie }) => {
+const FeaturedMovie = ({ genres, backdropPath, originalName, numberOfSeasons, overview, featureId, movie, title }) => {
 
     const router = useRouter()
 
@@ -28,7 +28,7 @@ const FeaturedMovie = ({ genres, backdropPath, originalName, numberOfSeasons, ov
               <div className="featured--vertical w-[inherit] h-[inherit]" style={{background: 'linear-gradient(to top, #111 10%, transparent 90%)'}}>
                   <div className="featured--horizontal flex flex-col justify-center pl-8 pb-10 pt-9 w-[inherit] h-[inherit]" style={{background: 'linear-gradient(to right, rgb(17 17 17 / 38%) 30%, transparent 70%)'}}>
                       <div className="featured--name text-4xl font-bold">{originalName}</div>
-                      <div className="featured--year mr-4 inline-block text-4xl max-w-[40%] font-bold" style={{ textShadow: "2px 2px 4px rgb(0 0 0 / 45%)" }}>{movie.title}</div>
+                      <div className="featured--year mr-4 inline-block text-4xl max-w-[40%] font-bold" style={{ textShadow: "2px 2px 4px rgb(0 0 0 / 45%)" }}>{title}</div>
                       {numberOfSeasons ? 
                         <div className="featured--info text-lg font-bold mt-4">
                             <div className="featured-seasons inline-block mr-4">{numberOfSeasons !== 1 ? `${numberOfSeasons} Temporadas` : `${numberOfSeasons} Temporada`}</div>
@@ -42,8 +42,8 @@ const FeaturedMovie = ({ genres, backdropPath, originalName, numberOfSeasons, ov
                                 router.push({
                                 pathname: "/Movie/[MovieInfoTv]/[tvMovieInfo]",
                                 query: {
-                                    MovieInfoTv: movie?.title,
-                                    tvMovieInfo: movie?.id,
+                                    MovieInfoTv: title,
+                                    tvMovieInfo: featureId,
                                     }
                                 });
                                 }}
