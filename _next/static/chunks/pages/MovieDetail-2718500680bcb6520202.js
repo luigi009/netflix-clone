@@ -1,0 +1,1 @@
+_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[15],{e1rV:function(_,n,w){(window.__NEXT_P=window.__NEXT_P||[]).push(["/MovieDetail",function(){return w("/qS5")}])}},[["e1rV",0,1,2,3,4,6,5,7]]]);
