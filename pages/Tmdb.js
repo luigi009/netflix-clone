@@ -10,32 +10,32 @@ export const getHomeList = async () => {
     return [
         {
             slug: 'Originals',
-            title: 'Originais do Netflix',
+            title: 'Originals',
             items: await basicFetch(`/discover/tv?with_network=213&api_key=${API_KEY}`)
         },
         {
             slug: 'trending',
-            title: 'Recomendados para você',
+            title: 'Recommended',
             items: await basicFetch(`/trending/all/week?api_key=${API_KEY}`)
         },
         {
             slug: 'toprated',
-            title: 'Em alta',
+            title: 'Top Rated',
             items: await basicFetch(`/movie/top_rated?api_key=${API_KEY}`)
         },
         {
             slug: 'Action',
-            title: 'Ação',
+            title: 'Action',
             items: await basicFetch(`/discover/movie?with_genres=28&api_key=${API_KEY}`)
         },
         {
             slug: 'Comedy',
-            title: 'Comédia',
+            title: 'Comedy',
             items: await basicFetch(`/discover/movie?with_genres=35&api_key=${API_KEY}`)
         },
         {
             slug: 'Horror',
-            title: 'Terror',
+            title: 'Horror',
             items: await basicFetch(`/discover/movie?with_genres=27&api_key=${API_KEY}`)
         },
         {
@@ -45,7 +45,7 @@ export const getHomeList = async () => {
         },
         {
             slug: 'Documentary',
-            title: 'Documentário',
+            title: 'Documentary',
             items: await basicFetch(`/discover/movie?with_genres=99&api_key=${API_KEY}`)
         },
     ];
@@ -66,6 +66,42 @@ export const getMovieInfo = async (movieId, type) => {
                 info = null;
             break
         }
+    }
+
+    return info
+}
+
+export const featuredMovieSimilar = async (type) => {
+    let info = {};
+
+    switch(type) {
+        case 'originals':
+            info = await basicFetch(`/discover/tv?with_network=213&api_key=${API_KEY}`)
+        break;
+        case 'trending':
+            info = await basicFetch(`/trending/all/week?api_key=${API_KEY}`)
+            break;
+        case 'toprated':
+            info = await basicFetch(`/movie/top_rated?api_key=${API_KEY}`)
+            break;
+        case 'action':
+            info = await basicFetch(`/discover/movie?with_genres=28&api_key=${API_KEY}`)
+            break;
+        case 'comedy':
+            info = await basicFetch(`/discover/movie?with_genres=35&api_key=${API_KEY}`)
+            break;
+        case 'horror': 
+            info = await basicFetch(`/discover/movie?with_genres=27&api_key=${API_KEY}`)
+            break;
+        case 'romance':
+            info = await basicFetch(`/discover/movie?with_genres=10749&api_key=${API_KEY}`)
+            break;
+        case 'documentary':
+            info = await basicFetch(`/discover/movie?with_genres=99&api_key=${API_KEY}`)
+            break;
+        default:
+            info = null
+        break;
     }
 
     return info

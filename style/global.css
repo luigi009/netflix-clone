@@ -35,3 +35,11 @@ body {
 .movieRow--list {
     transition: all ease 0.5s;
 }
+
+.css-1k51tf5-MuiTooltip-tooltip {
+    background-color: #fff !important;
+}
+
+.css-kudwh-MuiTooltip-arrow {
+    color: #fff !important
+}

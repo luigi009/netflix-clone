@@ -34,8 +34,6 @@ function movie() {
         }
     }, [router])
 
-    console.log(router)
-
     let productionCompanies = movie?.production_companies
 
     let productionCompaniesArray = []

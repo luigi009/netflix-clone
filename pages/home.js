@@ -3,6 +3,7 @@ import { getHomeList, getMovieInfo } from './Tmdb';
 import MovieRow from './MovieRow';
 import FeaturedMovie from './FeaturedMovie';
 import Header from './Header';
+import { featuredMovieSimilar } from './Tmdb';
 
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
@@ -11,6 +12,7 @@ const home = () => {
     const [movieList, setMovieList] = useState([]);
     const [featuredData, setFeaturedData] = useState(null);
     const [blackHeader, setBlackHeader] = useState(false);
+    const [featureSimilarMovies, setFeatureSimilarMovies] = useState(null)
 
     useEffect(() => {
         const loadAll = async () => {
@@ -24,6 +26,10 @@ const home = () => {
             let chosen = originals[0].items.results[randomChosen];
             let chosenInfo = await getMovieInfo(chosen.id, 'movie')
             setFeaturedData(chosenInfo);
+
+            //Similar movies feature
+            let featureSimilar = await featuredMovieSimilar('action')
+            setFeatureSimilarMovies(featureSimilar)
         }
         loadAll();
     }, [])
@@ -63,7 +69,9 @@ const home = () => {
                 originalName={featuredData?.original_name} 
                 backdropPath={featuredData?.backdrop_path} 
                 genres={featuredData?.genres} 
-                date={featuredData?.release_date} />
+                date={featuredData?.release_date} 
+                featureSimilarMovies={featureSimilarMovies?.results}
+                />
                 }
 
               <section className="lists mt-[-250px]">

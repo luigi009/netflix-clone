@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
 import { useRouter } from 'next/router'
+import MovieDetail from "./MovieDetail";
 
-const FeaturedMovie = ({ genres, backdropPath, originalName, numberOfSeasons, overview, featureId, movie, title }) => {
+const FeaturedMovie = ({ genres, backdropPath, originalName, numberOfSeasons, overview, featureId, movie, title, featureSimilarMovies }) => {
 
     const router = useRouter()
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+      
+      const handleClose = () => {
+        setOpen(false);
+      };
 
     let genresArray = [];
     for(let i in genres) {
@@ -48,17 +58,26 @@ const FeaturedMovie = ({ genres, backdropPath, originalName, numberOfSeasons, ov
                                 });
                                 }}
                              className="cursor-pointer featured--watchbutton inline-block sm:text-2xl font-bold pt-2 pb-2 pr-5 pl-5 mr-3 rounded-md no-underline bg-white text-black opacity-100 hover:opacity-90 transition duration-[0.2s] ease-in-out">
-                              <PlayArrowIcon sx={{ fontSize: "30px" }} /> 
+                              <PlayArrowIcon style={{ fontSize: "35px" }} /> 
                               Play
                           </a>
-                          <a className="cursor-pointer featured--mylistbutton inline-block sm:text-2xl font-bold pt-2 pb-2 pr-5 pl-5 mr-3 rounded-md no-underline bg-[#6d6d6e] text-white opacity-100 hover:opacity-90 transition duration-[0.2s] ease-in-out">
-                              <InfoIcon sx={{ fontSize: "30px" }} style={{ color: "#fff" }} /> 
+                          <a onClick={handleClickOpen} className="cursor-pointer featured--mylistbutton inline-block sm:text-2xl font-bold pt-2 pb-2 pr-5 pl-5 mr-3 rounded-md no-underline bg-[#6d6d6e] text-white opacity-100 hover:opacity-90 transition duration-[0.2s] ease-in-out">
+                              <InfoIcon style={{ color: "#fff", fontSize: "35px" }} /> 
                               More Info
                           </a>
                       </div>
                   </div>
               </div>
-          </section>  
+          </section>
+
+            {/* More Info */}
+            <MovieDetail
+            item={movie}
+            handleClickOpen={open}
+            close={handleClose}
+            anotherMovies={featureSimilarMovies}
+            anotherMoviesNumber={featureSimilarMovies?.length} 
+            />  
         </>
     )
 }
