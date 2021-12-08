@@ -55,7 +55,7 @@ const MovieRow = ({ title, results, resultsNumber }) => {
                         <NavigateNextIcon style={{width: '50px', height: '50px'}} style={{fontSize: 50}} />
                     </div>
                 </div>
-                <div className="pl-7">
+                <div className="pl-7" id={`row-${title}`}>
                     <div className="movieRow--list" style={{marginLeft: scrollX, width: resultsNumber * 250}}>
                         {resultsNumber && results.map((item, index) => {
                             return (

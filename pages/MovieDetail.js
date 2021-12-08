@@ -95,7 +95,48 @@ function MovieDetail({ item, handleClickOpen, close, anotherMovies, anotherMovie
         }
     }
 
-    console.log("movieDetail ===>", movieDetail)
+    //Random number of Episodes
+
+    function playIconAbleOrDisable(element, index) {
+      let playIcon = document.getElementById(`episode-play-icon-${index}`)
+
+      if(element === "able") {
+        playIcon.classList.add("inline-block")
+        playIcon.classList.remove("hidden")
+      } else if(element === "disable") {
+        playIcon.classList.remove("inline-block")
+        playIcon.classList.add("hidden")
+      }
+
+    }
+
+    let arrayEpisodes = [];
+
+    for( var i = 0; i < Math.floor(Math.random() * 10) + 1; i++) {
+      arrayEpisodes.push(
+        <>
+          <div className="text-[#fff] flex flex-row">
+            <div className="text-[#d2d2d2] flex justify-center items-center text-3xl w-2/12">{i+1}</div>
+            <div className="h-[50vh] w-10/12 bg-no-repeat bg-center h-[140px]" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${item?.backdrop_path})`, backgroundSize: "100%"}}>
+              <div className="flex justify-center items-center h-full">
+                <svg class="w-5/12 h-5/12 hidden" id={`episode-play-icon-${i}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+            </div>
+              <div className="flex flex-col">
+                <div className="w-full flex flex-row justify-between">
+                  <div className="text-xl pl-4 pt-4">{item?.original_title || item?.title || item?.name}</div>
+                    <div className="text-xl pl-4 pt-4">{Math.floor(Math.random() * 60) + 1}min</div>
+                  </div>
+              <div className="text-md pl-4 pt-4 w-full">
+                {add3Dots(item?.overview, 180)}
+              </div>
+            </div>
+          </div>
+        </>
+      )
+    }
 
     return (
         <>
@@ -202,56 +243,52 @@ function MovieDetail({ item, handleClickOpen, close, anotherMovies, anotherMovie
                 <Tab value={1} label={<span className="text-xl text-[#fff]">Session 2</span>} />
                 <Tab value={2} label={<span className="text-xl text-[#fff]">Session 3</span>} />
               </Tabs>
-              <TabPanel className="bg-[#333] rounded-lg mt-4" value={value} index={0}>
+              <TabPanel className="mt-4" value={value} index={0}>
 
-                <div className="text-[#fff] flex flex-row">
-                  <div className="h-[50vh] w-8/12 bg-no-repeat bg-center h-[140px]" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${item?.backdrop_path})`, backgroundSize: "100%"}} />
-                  <div className="flex flex-col">
-                    <div className="w-full flex flex-row justify-between">
-                      <div className="text-xl pl-4 pt-4">Episode 1</div>
-                      <div className="text-xl pl-4 pt-4">{Math.floor(Math.random() * 60) + 1}min</div>
-                    </div>
-                    <div className="text-md pl-4 pt-4 w-full">
-                      {add3Dots(item?.overview, 240)}
-                    </div>
-                  </div>
-                </div>
-
-              </TabPanel>
-              <TabPanel className="bg-[#333] rounded-lg mt-4" value={value} index={1}>
-
-                <div className="text-[#fff]">
-                  <div className="text-[#fff] flex flex-row">
-                    <div className="h-[50vh] w-8/12 bg-no-repeat bg-center h-[140px]" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${item?.backdrop_path})`, backgroundSize: "100%"}} />
-                    <div className="flex flex-col">
-                      <div className="w-full flex flex-row justify-between">
-                        <div className="text-xl pl-4 pt-4">Episode 1</div>
-                        <div className="text-xl pl-4 pt-4">{Math.floor(Math.random() * 60) + 1}min</div>
-                      </div>
-                      <div className="text-md pl-4 pt-4 w-full">
-                        {add3Dots(item?.overview, 240)}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {arrayEpisodes.map((episode, index) => {
+                  return (
+                    <>
+                      <div 
+                        onMouseOver={() => {playIconAbleOrDisable("able", index)}} 
+                        onMouseOut={() => {playIconAbleOrDisable("disable", index)}} 
+                        className={`w-auto cursor-pointer p-6 border-b-2 border-[#404040] ${index === 0 ? `bg-[#333] rounded-lg` : null}`} 
+                        key={index}>{episode}
+                      </div>      
+                    </>
+                  )
+                })}
 
               </TabPanel>
-              <TabPanel className="bg-[#333] rounded-lg mt-4" value={value} index={2}>
+              <TabPanel className="mt-4" value={value} index={1}>
 
-                <div className="text-[#fff]">
-                  <div className="text-[#fff] flex flex-row">
-                    <div className="h-[50vh] w-8/12 bg-no-repeat bg-center h-[140px]" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${item?.backdrop_path})`, backgroundSize: "100%"}} />
-                    <div className="flex flex-col">
-                      <div className="w-full flex flex-row justify-between">
-                        <div className="text-xl pl-4 pt-4">Episode 1</div>
-                        <div className="text-xl pl-4 pt-4">{Math.floor(Math.random() * 60) + 1}min</div>
+              {arrayEpisodes.map((episode, index) => {
+                  return (
+                    <>
+                      <div 
+                        onMouseOver={() => {playIconAbleOrDisable("able", index)}} 
+                        onMouseOut={() => {playIconAbleOrDisable("disable", index)}} 
+                        className={`w-auto cursor-pointer p-6 border-b-2 border-[#404040] ${index === 0 ? `bg-[#333] rounded-lg` : null}`} 
+                        key={index}>{episode}
+                      </div>                    
+                    </>
+                  )
+                })}
+
+              </TabPanel>
+              <TabPanel className="mt-4" value={value} index={2}>
+
+              {arrayEpisodes.map((episode, index) => {
+                  return (
+                    <>
+                      <div 
+                        onMouseOver={() => {playIconAbleOrDisable("able", index)}} 
+                        onMouseOut={() => {playIconAbleOrDisable("disable", index)}} 
+                        className={`w-auto cursor-pointer p-6 border-b-2 border-[#404040] ${index === 0 ? `bg-[#333] rounded-lg` : null}`} 
+                        key={index}>{episode}
                       </div>
-                      <div className="text-md pl-4 pt-4 w-full">
-                        {add3Dots(item?.overview, 240)}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    </>
+                  )
+                })}
 
               </TabPanel>
             </div>

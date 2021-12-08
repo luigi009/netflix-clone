@@ -62,7 +62,7 @@ const FeaturedMovie = ({ genres, backdropPath, originalName, numberOfSeasons, ov
                               Play
                           </a>
                           <a onClick={handleClickOpen} className="cursor-pointer featured--mylistbutton inline-block sm:text-2xl font-bold pt-2 pb-2 pr-5 pl-5 mr-3 rounded-md no-underline bg-[#6d6d6e] text-white opacity-100 hover:opacity-90 transition duration-[0.2s] ease-in-out">
-                              <InfoIcon style={{ color: "#fff", fontSize: "35px" }} /> 
+                              <InfoIcon style={{ color: "#fff", fontSize: "35px", paddingBottom: "6px" }} /> 
                               More Info
                           </a>
                       </div>
