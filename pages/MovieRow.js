@@ -48,10 +48,10 @@ const MovieRow = ({ title, results, resultsNumber, searchCategory, searchMovie }
       useEffect(() => {
         const filter = () => {
 
-            if (!searchMovie.length) {
+            if (!searchMovie?.length) {
                 setFilteredMovies(results);
               } else {
-                const filteredMovie = results.length && results.filter((movie) => {
+                const filteredMovie = results?.length && results.filter((movie) => {
                     let name = movie?.title?.toLowerCase() || movie?.original_title?.toLowerCase() || movie?.name?.toLowerCase()
 
                   if (name.includes(searchMovie.toLowerCase())) {

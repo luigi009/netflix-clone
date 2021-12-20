@@ -62,10 +62,10 @@ const home = () => {
             let list = await getHomeList();
             setLoad(false)
 
-            if (!searchCategory.length) {
+            if (!searchCategory?.length) {
                 setFilteredCategoryMovies(list);
               } else {
-                const filteredCategory = list.length && list.filter((movie) => {
+                const filteredCategory = list?.length && list?.filter((movie) => {
                   if (movie.title.toLowerCase().includes(searchCategory.toLowerCase())) {
                     return movie;
                   } else {
