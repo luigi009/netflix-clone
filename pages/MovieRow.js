@@ -71,7 +71,7 @@ const MovieRow = ({ title, results, resultsNumber, searchCategory, searchMovie }
 
     return (
         <>
-            {!searchMovie.length ?
+            {!searchMovie?.length ?
             <div className="movieRow mt-6" id={`movie-row-${title}`} onMouseOver={movieRowAble} onMouseLeave={movieRowDisable}>
                 <h2 className="ml-7 mb-1 font-bold text-2xl max-w-lg tracking-wide">{title}</h2>
                 <div className="movieRow--left">
