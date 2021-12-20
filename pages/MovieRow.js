@@ -51,10 +51,10 @@ const MovieRow = ({ title, results, resultsNumber, searchCategory, searchMovie }
             if (!searchMovie?.length) {
                 setFilteredMovies(results);
               } else {
-                const filteredMovie = results?.length && results.filter((movie) => {
+                const filteredMovie = results?.length && results?.filter((movie) => {
                     let name = movie?.title?.toLowerCase() || movie?.original_title?.toLowerCase() || movie?.name?.toLowerCase()
 
-                  if (name.includes(searchMovie.toLowerCase())) {
+                  if (name?.includes(searchMovie.toLowerCase())) {
                     return movie;
                   } else {
                     return "";
@@ -84,7 +84,7 @@ const MovieRow = ({ title, results, resultsNumber, searchCategory, searchMovie }
                 </div>
                 <div className="pl-7" id={`row-${title}`}>
                     <div className="movieRow--list" style={{marginLeft: scrollX, width: resultsNumber * 250}}>
-                        {resultsNumber && filteredMovies.map((item, index) => {
+                        {resultsNumber && filteredMovies?.map((item, index) => {
                             return (
                             <> 
                                 <Movie
@@ -103,7 +103,7 @@ const MovieRow = ({ title, results, resultsNumber, searchCategory, searchMovie }
             </div>
             :
                     <div className="movieRow--list">
-                        {resultsNumber && filteredMovies.map((item, index) => {
+                        {resultsNumber && filteredMovies?.map((item, index) => {
                             return (
                             <> 
                                 <Movie
