@@ -1,7 +1,9 @@
 import React from 'react'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { signIn, signOut, useSession } from 'next-auth/client';
+import SearchIcon from '@mui/icons-material/Search';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
-export default function Header({black}) {
+export default function Header({ black, searchCategory, setSearchCategory, searchMovie, setSearchMovie }) {
 
     const [ session, loading ] = useSession()
 
@@ -14,14 +16,32 @@ export default function Header({black}) {
                     </svg>
                 </a>
                 <div className="fixed left-[200px] font-bold text-lg">
-                    <a href="/">Home</a>
+                    <a href="/" onClick={() => { setSearchCategory(""); }}>Home</a>
                 </div>
-                <div>
-                {!session ? <button onClick={()=> signIn('google') } className="flex items-center bg-[#e50914] text-white text-sm px-4 py-2 rounded">
-                    Sign In
-                </button> : <button onClick={()=> signOut() } className="flex items-center bg-[#e50914] text-white text-sm px-4 py-2 rounded">
-                    Sign out
-                </button>}
+                <div className="fixed left-[300px] font-bold text-lg">
+                    <a className="cursor-pointer" onClick={() => { setSearchCategory("Action"); setSearchMovie(""); }}>Action</a>
+                </div>
+
+                <div className="fixed left-[400px] font-bold text-lg">
+                    <a className="cursor-pointer" onClick={() => { setSearchCategory("Originals"); setSearchMovie(""); }}>Originals</a>
+                </div>
+
+                <div className="fixed left-[500px] font-bold text-lg">
+                    <a className="cursor-pointer" onClick={() => { setSearchCategory("Recommended"); setSearchMovie(""); }}>Recommended</a>
+                </div>
+                <div className='flex justify-between w-4/12'>
+                    <div className="font-bold bg-[#000] text-lg border-2 border-[#fff] p-1">
+                        <SearchIcon className='bg-[#000] mx-1' style={{ color: "#fff" }} />
+                        <input className='text-gray-700 bg-[#000] focus:outline-none' placeholder='search movie...' value={searchMovie} onChange={(e) => { setSearchMovie(e.target.value); setSearchCategory("") }} />
+                    </div>
+                    <div className='flex justify-center items-center cursor-pointer'>
+                        <NotificationsIcon />
+                    </div>
+                    {!session ? <button onClick={()=> signIn('google') } className="items-center bg-[#e50914] text-white text-sm px-4 py-2 rounded">
+                        Sign In
+                    </button> : <button onClick={()=> signOut() } className="items-center bg-[#e50914] text-white text-sm px-4 py-2 rounded">
+                        Sign out
+                    </button>}
                 </div>
             </header>  
         </div>

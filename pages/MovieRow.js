@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 import Movie from './Movie'
 
-const MovieRow = ({ title, results, resultsNumber }) => {
+
+const MovieRow = ({ title, results, resultsNumber, searchCategory, searchMovie }) => {
     const [scrollX, setScrollX] = useState(0)
+    const [filteredMovies, setFilteredMovies] = useState( results || [])
 
     const handleLeftArrow = () => {
         let x = scrollX + Math.round(window.innerWidth / 2);
@@ -43,8 +45,33 @@ const MovieRow = ({ title, results, resultsNumber }) => {
       
       }
 
+      useEffect(() => {
+        const filter = () => {
+
+            if (!searchMovie.length) {
+                setFilteredMovies(results);
+              } else {
+                const filteredMovie = results.length && results.filter((movie) => {
+                    let name = movie?.title?.toLowerCase() || movie?.original_title?.toLowerCase() || movie?.name?.toLowerCase()
+
+                  if (name.includes(searchMovie.toLowerCase())) {
+                    return movie;
+                  } else {
+                    return "";
+                  }
+                });
+    
+                setFilteredMovies(filteredMovie);
+            }
+
+        }
+
+        filter()
+      }, [searchCategory, searchMovie])
+
     return (
         <>
+            {!searchMovie.length ?
             <div className="movieRow mt-6" id={`movie-row-${title}`} onMouseOver={movieRowAble} onMouseLeave={movieRowDisable}>
                 <h2 className="ml-7 mb-1 font-bold text-2xl max-w-lg tracking-wide">{title}</h2>
                 <div className="movieRow--left">
@@ -57,7 +84,7 @@ const MovieRow = ({ title, results, resultsNumber }) => {
                 </div>
                 <div className="pl-7" id={`row-${title}`}>
                     <div className="movieRow--list" style={{marginLeft: scrollX, width: resultsNumber * 250}}>
-                        {resultsNumber && results.map((item, index) => {
+                        {resultsNumber && filteredMovies.map((item, index) => {
                             return (
                             <> 
                                 <Movie
@@ -74,6 +101,25 @@ const MovieRow = ({ title, results, resultsNumber }) => {
                     </div>
                 </div>
             </div>
+            :
+                    <div className="movieRow--list">
+                        {resultsNumber && filteredMovies.map((item, index) => {
+                            return (
+                            <> 
+                                <Movie
+                                    index={index}
+                                    category={title}
+                                    searchMovie={searchMovie}
+                                    item={item}
+                                    poster={item?.poster_path}
+                                    anotherMovies={results}
+                                    anotherMoviesNumber={resultsNumber}
+                                />
+                            </>
+                            )
+                        })}
+                </div>
+            }
         </>
     )
 }

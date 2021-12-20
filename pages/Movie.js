@@ -8,7 +8,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Tooltip from '@mui/material/Tooltip';
 import MovieDetail from "./MovieDetail";
 
-function Movie({ item, poster, index, anotherMovies, anotherMoviesNumber, category }) {
+function Movie({ item, poster, index, anotherMovies, anotherMoviesNumber, category, searchMovie }) {
 
 const [open, setOpen] = useState(false);
 const router = useRouter()
@@ -33,6 +33,17 @@ function movieInformationAble() {
 
 }
 
+function movieInformationAbleSearch() {
+  let movieInfo = document.getElementById(`${category}-${index}-movie-info-${item?.original_title || item?.title || item?.name}`)
+
+  if(movieInfo) {
+    movieInfo.classList.remove("hidden")
+    movieInfo.classList.add("block")
+    movieInfo.classList.add("z-[1000]")
+  }
+
+}
+
 function movieInformationDisable() {
   let movieInfo = document.getElementById(`${category}-${index}-movie-info-${item?.original_title || item?.title || item?.name}`)
 
@@ -43,16 +54,41 @@ function movieInformationDisable() {
 
 }
 
+function movieInformationDisableSearch() {
+  let movieInfo = document.getElementById(`${category}-${index}-movie-info-${item?.original_title || item?.title || item?.name}`)
+
+  if(movieInfo) {
+    movieInfo.classList.remove("block")
+    movieInfo.classList.add("hidden")
+    movieInfo.classList.remove("z-[1000]")
+  }
+
+}
+
   return (
     <>
       <div 
-        onMouseLeave={movieInformationDisable} 
+        onMouseLeave={() => {
+          if(!searchMovie?.length)
+           { 
+             movieInformationDisable();
+            } else {
+              movieInformationDisableSearch();
+            }
+          }
+        } 
         id={`${category}-${index}-movie-card-${item?.original_title || item?.title || item?.name}`}
         className="movieRow--item inline-block w-[250px] transition duration-[0.2s] ease-in-out transform scale-[0.9] hover:scale-[1]">
           <div id={`movie-img-${item?.original_title || item?.title || item?.name}`}>
         <a
           
-          onMouseOver={movieInformationAble}
+          onMouseOver={() => {
+            if(!searchMovie?.length) {
+              movieInformationAble();
+            } else {
+              movieInformationAbleSearch();
+            }
+          }}
           onClick={() => {
             router.push({
               pathname: "/Movie/[MovieInfoTv]/[tvMovieInfo]",

@@ -12,10 +12,15 @@ const home = () => {
     const [movieList, setMovieList] = useState([]);
     const [featuredData, setFeaturedData] = useState(null);
     const [blackHeader, setBlackHeader] = useState(false);
-    const [featureSimilarMovies, setFeatureSimilarMovies] = useState(null)
+    const [load, setLoad] = useState(false)
+    const [featureSimilarMovies, setFeatureSimilarMovies] = useState(null);
+    const [searchCategory, setSearchCategory] = useState("");
+    const [searchMovie, setSearchMovie] = useState("");
+    const [filteredCategoryMovies, setFilteredCategoryMovies] = useState([]);
 
     useEffect(() => {
         const loadAll = async () => {
+            setLoad(true)
             let list = await getHomeList();
             //Movie List
             setMovieList(list);
@@ -30,6 +35,7 @@ const home = () => {
             //Similar movies feature
             let featureSimilar = await featuredMovieSimilar('action')
             setFeatureSimilarMovies(featureSimilar)
+            setLoad(false)
         }
         loadAll();
     }, [])
@@ -50,15 +56,45 @@ const home = () => {
         }
     }, []);
 
+    useEffect(() => {
+        const filter = async () => {
+            setLoad(true)
+            let list = await getHomeList();
+            setLoad(false)
+
+            if (!searchCategory.length) {
+                setFilteredCategoryMovies(list);
+              } else {
+                const filteredCategory = list.length && list.filter((movie) => {
+                  if (movie.title.toLowerCase().includes(searchCategory.toLowerCase())) {
+                    return movie;
+                  } else {
+                    return "";
+                  }
+                });
+    
+                setFilteredCategoryMovies(filteredCategory);
+            }
+
+        }
+
+        filter()
+    }, [searchCategory, searchMovie])
+
     return (
         <>
           <div className="page">
 
-              <Header black={blackHeader} />
+              <Header 
+              black={blackHeader} 
+              searchCategory={searchCategory}
+              setSearchCategory={setSearchCategory}
+              searchMovie={searchMovie}
+              setSearchMovie={setSearchMovie}
+              />
 
               {
-                featuredData 
-                    && 
+                featuredData && !searchMovie.length ?
                 <FeaturedMovie 
                 movie={featuredData}
                 title={featuredData?.title}
@@ -72,15 +108,25 @@ const home = () => {
                 date={featuredData?.release_date} 
                 featureSimilarMovies={featureSimilarMovies?.results}
                 />
+                :
+                null
                 }
 
-              <section className="lists mt-[-250px]">
-                  {movieList.map((item, key) => (
-                      <MovieRow key={key} title={item.title} resultsNumber={item.items.results.length} results={item.items.results} items={item.items} />
+              <section className={`lists ${!searchMovie.length ? "mt-[-250px]" : "mt-[50px] grid gap-4 grid-cols-4"}`}>
+                  {filteredCategoryMovies?.map((item, key) => (
+                      <MovieRow 
+                        searchCategory={searchCategory}
+                        searchMovie={searchMovie}
+                        key={key} 
+                        title={item?.title} 
+                        resultsNumber={item?.items?.results.length} 
+                        results={item?.items?.results} 
+                        items={item?.items} 
+                        />
                   ))}
               </section>
 
-              {movieList.length <= 0 &&
+              {load &&
                 <div className="loading fixed left-0 right-0 top-0 bottom-0 z-[99] bg-black flex justify-center items-center">
                     <img src={prefix + 'https://media.wired.com/photos/592744d3f3e2356fd800bf00/master/w_2000,c_limit/Netflix_LoadTime.gif'} alt="Carregando" />
                 </div>
