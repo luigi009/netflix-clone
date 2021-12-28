@@ -8,9 +8,13 @@ const MovieRowSearch = ({ title, results, resultsNumber, searchCategory, searchM
     let numberOfResults = [];
     numberOfResults.push(allItemResults)
 
-    for (let i = 0; i < numberOfResults?.length; i++) {
-        setSearchResult(numberOfResults[i]?.length)
+    function getNumberOfResults() {
+        for (let i = 0; i < numberOfResults?.length; i++) {
+            return numberOfResults[i]?.length
+        }
     }
+
+    setSearchResult(getNumberOfResults)
 
       useEffect(() => {
         const filter = () => {
