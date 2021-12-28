@@ -42,7 +42,6 @@ const MovieRowSearch = ({ title, results, resultsNumber, searchCategory, searchM
                                     poster={item?.poster_path}
                                     anotherMovies={results}
                                     anotherMoviesNumber={resultsNumber}
-                                    setSearchResult={setSearchResult}
                                 />
                             </>
                             )

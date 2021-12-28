@@ -23,7 +23,7 @@ const home = () => {
     const [scrollX, setScrollX] = useState(0);
 
     function getResultSearch() {
-      let allItemResults = typeof document !== 'undefined' && document.querySelectorAll(".movieRow--item--result");
+      let allItemResults = typeof document !== undefined ? document.querySelectorAll(".movieRow--item--result") : null;
       let numberOfResults = [];
       numberOfResults.push(allItemResults.length && allItemResults)
 
