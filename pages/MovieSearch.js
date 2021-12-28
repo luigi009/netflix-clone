@@ -18,8 +18,8 @@ const allItemResults = document.querySelectorAll(".movieRow--item--result")
 let numberOfResults = []
 numberOfResults.push(allItemResults)
 
-for (let i = 0; i < numberOfResults.length; i++) {
-    setSearchResult(numberOfResults[i].length)
+for (let i = 0; i < numberOfResults?.length; i++) {
+    setSearchResult(numberOfResults[i]?.length)
 }
 
 const handleClickOpen = () => {
