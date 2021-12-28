@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getHomeList, getMovieInfo } from './Tmdb';
 import MovieRow from './MovieRow';
+import MovieRowSearch from './MovieRowSearch'
 import FeaturedMovie from './FeaturedMovie';
 import Header from './Header';
 import { featuredMovieSimilar } from './Tmdb';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
@@ -17,6 +20,8 @@ const home = () => {
     const [searchCategory, setSearchCategory] = useState("");
     const [searchMovie, setSearchMovie] = useState("");
     const [filteredCategoryMovies, setFilteredCategoryMovies] = useState([]);
+    const [searchResult, setSearchResult] = useState(0);
+    const [scrollX, setScrollX] = useState(0);
 
     useEffect(() => {
         const loadAll = async () => {
@@ -81,6 +86,23 @@ const home = () => {
         filter()
     }, [searchCategory, searchMovie])
 
+    const handleLeftArrow = () => {
+      let x = scrollX + Math.round(window.innerWidth / 2);
+      if(x > 0) {
+          x = 0;
+      }
+      setScrollX(x);
+  }
+
+  const handleRighttArrow = () => {
+      let x = scrollX - Math.round(window.innerWidth / 2);
+      let listW = searchResult * 250;
+      if((window.innerWidth - listW) > x) {
+          x = (window.innerWidth - listW) - 60;
+      }
+      setScrollX(x)
+  }
+
     return (
         <>
           <div className="page">
@@ -112,19 +134,54 @@ const home = () => {
                 null
                 }
 
-              <section className={`lists ${!searchMovie.length ? "mt-[-250px]" : "mt-[50px] grid gap-4 grid-cols-4"}`}>
-                  {filteredCategoryMovies?.map((item, key) => (
-                      <MovieRow 
-                        searchCategory={searchCategory}
-                        searchMovie={searchMovie}
-                        key={key} 
-                        title={item?.title} 
-                        resultsNumber={item?.items?.results.length} 
-                        results={item?.items?.results} 
-                        items={item?.items} 
-                        />
-                  ))}
-              </section>
+                {!searchMovie?.length ?
+                          <section className={`lists mt-[-250px]`}>
+                              {filteredCategoryMovies?.map((item, key) => (
+                                  <MovieRow 
+                                    searchCategory={searchCategory}
+                                    searchMovie={searchMovie}
+                                    key={key} 
+                                    title={item?.title} 
+                                    resultsNumber={item?.items?.results.length} 
+                                    results={item?.items?.results} 
+                                    items={item?.items} 
+                                    />
+                              ))}
+                          </section>
+                          :
+                          <div className='mt-20'>
+                          <h2 className="ml-7 mb-1 font-bold text-2xl max-w-lg tracking-wide">Results</h2>
+                          <div>
+                            <div className="movieRow--left">
+                              <div onClick={handleLeftArrow} className="movieRow--left z-[99] transition duration-[0.5s] ease-in-out cursor-pointer overflow-hidden flex justify-center items-center absolute w-[40px] h-[375px] bg-black bg-opacity-50 left-0">
+                                  <NavigateBeforeIcon style={{width: '50px', height: '50px'}} style={{fontSize: 50}} />
+                              </div>
+                              <div onClick={handleRighttArrow} className="movieRow--right z-[99] transition duration-[0.5s] ease-in-out cursor-pointer overflow-hidden flex justify-center items-center absolute w-[40px] h-[375px] bg-black bg-opacity-50 right-0">
+                                  <NavigateNextIcon style={{width: '50px', height: '50px'}} style={{fontSize: 50}} />
+                              </div>
+                          </div>
+                          <div style={{marginLeft: scrollX, width: searchResult * 250}}>
+                            <section className={`lists mt-[50px] flex flex-row`}>
+                              {filteredCategoryMovies?.map((item, key) => (
+                                  <MovieRowSearch 
+                                    searchCategory={searchCategory}
+                                    searchMovie={searchMovie}
+                                    key={key} 
+                                    title={item?.title} 
+                                    resultsNumber={item?.items?.results.length} 
+                                    results={item?.items?.results} 
+                                    items={item?.items} 
+                                    setSearchResult={setSearchResult}
+                                    />
+                              ))}
+                              </section>
+                            </div>
+                          </div>
+                          </div>
+              }
+
+
+
 
               {load &&
                 <div className="loading fixed left-0 right-0 top-0 bottom-0 z-[99] bg-black flex justify-center items-center">
