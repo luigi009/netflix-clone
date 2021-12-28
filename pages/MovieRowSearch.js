@@ -3,7 +3,14 @@ import MovieSearch from './MovieSearch';
 
 
 const MovieRowSearch = ({ title, results, resultsNumber, searchCategory, searchMovie, setSearchResult }) => {
-    const [filteredMovies, setFilteredMovies] = useState( results || [])
+    const [filteredMovies, setFilteredMovies] = useState( results || []);
+    let allItemResults = typeof document !== 'undefined' && document.querySelectorAll(".movieRow--item--result");
+    let numberOfResults = [];
+    numberOfResults.push(allItemResults)
+
+    for (let i = 0; i < numberOfResults?.length; i++) {
+        setSearchResult(numberOfResults[i]?.length)
+    }
 
       useEffect(() => {
         const filter = () => {
