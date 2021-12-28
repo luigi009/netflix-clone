@@ -21,17 +21,16 @@ const home = () => {
     const [searchMovie, setSearchMovie] = useState("");
     const [filteredCategoryMovies, setFilteredCategoryMovies] = useState([]);
     const [scrollX, setScrollX] = useState(0);
-    let allItemResults = typeof document !== 'undefined' && document.querySelectorAll(".movieRow--item--result");
-    let numberOfResults = [];
-    numberOfResults.push(allItemResults.length && allItemResults)
 
     function getResultSearch() {
+      let allItemResults = typeof document !== 'undefined' && document.querySelectorAll(".movieRow--item--result");
+      let numberOfResults = [];
+      numberOfResults.push(allItemResults.length && allItemResults)
+
       for (let i = 0; i < numberOfResults?.length; i++) {
         return numberOfResults[i]?.length
       }
     }
-
-    console.log("test ===>", getResultSearch());
 
     useEffect(() => {
         const loadAll = async () => {
