@@ -14,7 +14,7 @@ const [open, setOpen] = useState(false);
 const router = useRouter()
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
 let firstDate =new Date(item?.first_air_date || item?.release_date);
-const allItemResults = document.querySelectorAll(".movieRow--item--result")
+const allItemResults = document?.querySelectorAll(".movieRow--item--result")
 let numberOfResults = []
 numberOfResults.push(allItemResults)
 
