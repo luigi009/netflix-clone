@@ -20,8 +20,18 @@ const home = () => {
     const [searchCategory, setSearchCategory] = useState("");
     const [searchMovie, setSearchMovie] = useState("");
     const [filteredCategoryMovies, setFilteredCategoryMovies] = useState([]);
-    const [searchResult, setSearchResult] = useState(0);
     const [scrollX, setScrollX] = useState(0);
+    let allItemResults = typeof document !== 'undefined' && document.querySelectorAll(".movieRow--item--result");
+    let numberOfResults = [];
+    numberOfResults.push(allItemResults.length && allItemResults)
+
+    function getResultSearch() {
+      for (let i = 0; i < numberOfResults?.length; i++) {
+        return numberOfResults[i]?.length
+      }
+    }
+
+    console.log("test ===>", getResultSearch());
 
     useEffect(() => {
         const loadAll = async () => {
@@ -96,7 +106,7 @@ const home = () => {
 
   const handleRighttArrow = () => {
       let x = scrollX - Math.round(window.innerWidth / 2);
-      let listW = searchResult * 250;
+      let listW = getResultSearch() * 250;
       if((window.innerWidth - listW) > x) {
           x = (window.innerWidth - listW) - 60;
       }
@@ -160,7 +170,7 @@ const home = () => {
                                   <NavigateNextIcon style={{width: '50px', height: '50px'}} style={{fontSize: 50}} />
                               </div>
                           </div>
-                          <div style={{marginLeft: scrollX, width: searchResult * 250}}>
+                          <div style={{marginLeft: scrollX, width: getResultSearch() * 250}}>
                             <section className={`lists mt-[50px] flex flex-row`}>
                               {filteredCategoryMovies?.map((item, key) => (
                                   <MovieRowSearch 
@@ -171,7 +181,6 @@ const home = () => {
                                     resultsNumber={item?.items?.results.length} 
                                     results={item?.items?.results} 
                                     items={item?.items} 
-                                    setSearchResult={setSearchResult}
                                     />
                               ))}
                               </section>

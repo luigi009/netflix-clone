@@ -2,19 +2,8 @@ import React, { useState, useEffect } from 'react';
 import MovieSearch from './MovieSearch';
 
 
-const MovieRowSearch = ({ title, results, resultsNumber, searchCategory, searchMovie, setSearchResult }) => {
+const MovieRowSearch = ({ title, results, resultsNumber, searchCategory, searchMovie }) => {
     const [filteredMovies, setFilteredMovies] = useState( results || []);
-    let allItemResults = typeof document !== 'undefined' && document.querySelectorAll(".movieRow--item--result");
-    let numberOfResults = [];
-    numberOfResults.push(allItemResults)
-
-    function getNumberOfResults() {
-        for (let i = 0; i < numberOfResults?.length; i++) {
-            return numberOfResults[i]?.length
-        }
-    }
-
-    setSearchResult(getNumberOfResults)
 
       useEffect(() => {
         const filter = () => {

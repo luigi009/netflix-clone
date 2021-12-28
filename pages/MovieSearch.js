@@ -8,7 +8,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Tooltip from '@mui/material/Tooltip';
 import MovieDetail from "./MovieDetail";
 
-function MovieSearch({ item, poster, index, anotherMovies, anotherMoviesNumber, category, searchMovie, setSearchResult }) {
+function MovieSearch({ item, poster, index, anotherMovies, anotherMoviesNumber, category, searchMovie }) {
 
 const [open, setOpen] = useState(false);
 const router = useRouter()
