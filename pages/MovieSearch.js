@@ -14,17 +14,13 @@ const [open, setOpen] = useState(false);
 const router = useRouter()
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
 let firstDate =new Date(item?.first_air_date || item?.release_date);
+let allItemResults = typeof document !== 'undefined' && document.querySelectorAll(".movieRow--item--result");
+let numberOfResults = [];
+numberOfResults.push(allItemResults)
 
-function getNumberOfResults() {
-    let allItemResults = document.querySelectorAll(".movieRow--item--result");
-    let numberOfResults = [];
-    numberOfResults.push(allItemResults)
-    
-    for (let i = 0; i < numberOfResults?.length; i++) {
-        setSearchResult(numberOfResults[i]?.length)
-    }
+for (let i = 0; i < numberOfResults?.length; i++) {
+    setSearchResult(numberOfResults[i]?.length)
 }
-getNumberOfResults()
 
 const handleClickOpen = () => {
   setOpen(true);
