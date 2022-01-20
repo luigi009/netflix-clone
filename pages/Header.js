@@ -37,11 +37,11 @@ export default function Header({ black, searchCategory, setSearchCategory, searc
                     <div className='flex justify-center items-center cursor-pointer'>
                         <NotificationsIcon />
                     </div>
-                    {!session ? <button onClick={()=> signIn('google') } className="items-center bg-[#e50914] text-white text-sm px-4 py-2 rounded">
+                    {/* {!session ? <button onClick={()=> signIn('google') } className="items-center bg-[#e50914] text-white text-sm px-4 py-2 rounded">
                         Sign In
                     </button> : <button onClick={()=> signOut() } className="items-center bg-[#e50914] text-white text-sm px-4 py-2 rounded">
                         Sign out
-                    </button>}
+                    </button>} */}
                 </div>
             </header>  
         </div>
