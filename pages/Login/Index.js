@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import Checkbox from '@mui/material/Checkbox';
 
 function Login() {
   const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';

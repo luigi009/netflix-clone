@@ -10,7 +10,10 @@ import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import PeopleIcon from '@mui/icons-material/People';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Link from 'next/link'
+import Link from 'next/link';
+import { movieDate } from "../../Utilities/movieDate";
+import { add3Dots } from "../../Utilities/add3Dots";
+import { getListOfArray } from "../../Utilities/getListOfArray";
 
 function movie() {
 
@@ -18,7 +21,6 @@ function movie() {
     const [movie, setMovie] = useState({});
     const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
     const [ready, setReady] = useState(router.isReady);
-    let firstDate =new Date(movie?.release_date);
 
     const fetch = async () => {
         await axios.get(`https://api.themoviedb.org/3/movie/${router.query.tvMovieInfo}?api_key=${API_KEY}`)
@@ -34,30 +36,6 @@ function movie() {
         }
     }, [router])
 
-    let productionCompanies = movie?.production_companies
-
-    let productionCompaniesArray = []
-    for(let i in productionCompanies) {
-        productionCompaniesArray.push(productionCompanies[i].name)
-    }
-
-    let genresMovie = movie?.genres
-
-    let genresArray = [];
-    for(let i in genresMovie) {
-        genresArray.push(genresMovie[i].name)
-    }
-
-    function add3Dots(string = '', limit)
-    {
-    var dots = "...";
-    if(string.length > limit) {
-        string = string.substring(0,limit) + dots;
-    }
-
-        return string;
-    }
-
     return (
         <>
             <div className="absolute top-[10px] left-[30px]">
@@ -70,7 +48,7 @@ function movie() {
                                     <div className="featured--name text-4xl font-bold max-w-[40%]" style={{ textShadow: "2px 2px 4px rgb(0 0 0 / 45%)" }}>{movie?.original_title}</div>
                                     <div className="featured--info text-lg font-bold mt-4">
                                         <div className="featured--points inline-block mr-4 text-[#46d369]">{movie?.vote_average} {movie?.vote_average > 1 ? "Points" : "Point"}</div>
-                                        <div className="featured--year mr-4 inline-block ">{firstDate.getFullYear()}</div>
+                                        <div className="featured--year mr-4 inline-block ">{movieDate(movie?.release_date)}</div>
                                         <div className="inline-block bg-red-600 pl-1 pr-1 rounded-sm mr-4 opacity-90">{movie?.adult ? 18 : 16}</div>
                                         {movie?.number_of_seasons ?
                                             <div className="featured-seasons inline-block mr-4 ">{movie.number_of_seasons === 1 ? `${movie.number_of_seasons} Season` : `${movie.number_of_seasons} Seasons`}</div>
@@ -81,8 +59,8 @@ function movie() {
                                     </div>
                                     <div className="featured--description mt-4 sm:mr-3 sm:text-lg text-[#fff] sm:max-w-[40%] font-medium" style={{ textShadow: "2px 2px 4px rgb(0 0 0 / 45%)" }}>{add3Dots(movie?.overview, 200)}</div>
                                     <div className="text-lg font-normal mt-4">
-                                        <div className="featured--genres sm:text-lg text-[#999] max-w-[40%]">Genres: {genresArray.join(', ')}</div>
-                                        <div className="featured--genres sm:text-lg text-[#999] max-w-[40%]">Creators: {productionCompaniesArray.join(', ')}</div>
+                                        <div className="featured--genres sm:text-lg text-[#999] max-w-[40%]">Genres: {getListOfArray(movie?.genres)}</div>
+                                        <div className="featured--genres sm:text-lg text-[#999] max-w-[40%]">Creators: {getListOfArray(movie?.production_companies)}</div>
                                     </div>
                                     <div className="font-normal mt-6 text-xl">
                                         <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { useRouter } from 'next/router'
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import AddIcon from '@mui/icons-material/Add';
@@ -7,13 +7,13 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Tooltip from '@mui/material/Tooltip';
 import MovieDetail from "./MovieDetail";
+import { movieDate } from "./Utilities/movieDate";
 
 function Movie({ item, poster, index, anotherMovies, anotherMoviesNumber, category, searchMovie }) {
 
 const [open, setOpen] = useState(false);
 const router = useRouter()
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
-let firstDate =new Date(item?.first_air_date || item?.release_date);
 
 const handleClickOpen = () => {
   setOpen(true);
@@ -163,7 +163,7 @@ function movieInformationDisableSearch() {
             </div>
             <div className="featured--info text-lg font-bold mt-4">
                 <div className="featured--points inline-block pl-1 mr-4 text-[#46d369]">{item?.vote_average} {item?.vote_average > 1 ? "Points" : "Point"}</div>
-                <div className="featured--year mr-4 inline-block ">{firstDate.getFullYear()}</div>
+                <div className="featured--year mr-4 inline-block ">{movieDate(item?.first_air_date || item?.release_date)}</div>
                 <div className="inline-block bg-red-600 pl-1 pr-1 rounded-sm mr-4 opacity-90">{item?.adult ? 18 : 16}</div>
                 <div className="inline-block pl-1 pr-1 rounded-sm border-2 bg-black bg-opacity-50 opacity-80">HD</div>
             </div>
@@ -183,4 +183,4 @@ function movieInformationDisableSearch() {
   );
 }
 
-export default Movie;
+export default memo(Movie);

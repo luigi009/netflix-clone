@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Movie from './Movie';
@@ -103,4 +103,4 @@ const MovieRow = ({ title, results, resultsNumber, searchCategory, searchMovie }
     )
 }
 
-export default MovieRow
+export default memo(MovieRow);

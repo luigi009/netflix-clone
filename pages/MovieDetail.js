@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Dialog from '@mui/material/Dialog';
@@ -17,13 +17,17 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { add3Dots } from './Utilities/add3Dots';
+import { playIconAbleOrDisable } from './Utilities/playIconAbleOrDisable';
+import { showMoreCards } from './Utilities/showMoreCards';
+import { getListOfArray } from './Utilities/getListOfArray';
+import { movieDate } from './Utilities/movieDate';
 
 function MovieDetail({ item, handleClickOpen, close, anotherMovies, anotherMoviesNumber }) {
 
   const router = useRouter()
   const [movieDetail, setMovieDetail] = useState({})
   const [showMoreOrLess, setShowMoreOrLess] = useState(true)
-  let firstDate =new Date(item?.release_date);
 
   //Session Tabs 
   const [value, setValue] = useState(0);
@@ -62,53 +66,6 @@ function MovieDetail({ item, handleClickOpen, close, anotherMovies, anotherMovie
     useEffect(() => {
     fetch()
     },[])
-
-    let productionCompanies = movieDetail?.production_companies
-
-    let productionCompaniesArray = []
-    for(let i in productionCompanies) {
-        productionCompaniesArray.push(productionCompanies[i].name)
-    }
-
-    let genresMovie = movieDetail?.genres
-
-    let genresArray = [];
-    for(let i in genresMovie) {
-        genresArray.push(genresMovie[i].name)
-    }
-
-    function add3Dots(string = '', limit)
-    {
-    var dots = "...";
-    if(string.length > limit) {
-        string = string.substring(0,limit) + dots;
-    }
-
-        return string;
-    }
-
-    function showMoreCards(show) {
-        if(show === true) {
-            setShowMoreOrLess(true)
-        } else if(show === false) {
-            setShowMoreOrLess(false)
-        }
-    }
-
-    //Random number of Episodes
-
-    function playIconAbleOrDisable(element, index) {
-      let playIcon = document.getElementById(`episode-play-icon-${index}`)
-
-      if(element === "able") {
-        playIcon.classList.add("inline-block")
-        playIcon.classList.remove("hidden")
-      } else if(element === "disable") {
-        playIcon.classList.remove("inline-block")
-        playIcon.classList.add("hidden")
-      }
-
-    }
 
     let arrayEpisodes = [];
 
@@ -214,7 +171,7 @@ function MovieDetail({ item, handleClickOpen, close, anotherMovies, anotherMovie
                 <div className="max-w-[50%] p-2">
                   <div className="text-lg font-bold">
                     <div className="featured--points inline-block mr-4 text-[#46d369]">{item?.vote_average} {item?.vote_average > 1 ? "Points" : "Point"}</div>
-                    <div className="featured--year mr-4 inline-block text-white">{firstDate.getFullYear()}</div>
+                    <div className="featured--year mr-4 inline-block text-white">{movieDate(item?.release_date)}</div>
                     <div className="inline-block bg-red-600 pl-1 pr-1 text-white rounded-sm mr-4 opacity-90">{item?.adult ? 18 : 16}</div>
                     {movieDetail?.number_of_seasons ?
                         <div className="featured-seasons inline-block mr-4 ">{movieDetail.number_of_seasons === 1 ? `${movieDetail.number_of_seasons} Season` : `${movieDetail.number_of_seasons} Seasons`}</div>
@@ -227,8 +184,8 @@ function MovieDetail({ item, handleClickOpen, close, anotherMovies, anotherMovie
                 </div>
 
                 <div className="w-[50%] max-w-[50%] p-2">
-                  <div className="featured--genres sm:text-lg text-white"><strong>Genres:</strong> {genresArray.join(', ') || "-"}</div>
-                  <div className="featured--genres sm:text-lg text-white"><strong>Creators:</strong> {productionCompaniesArray.join(', ') || "-"}</div>
+                  <div className="featured--genres sm:text-lg text-white"><strong>Genres:</strong> {getListOfArray(movieDetail?.genres)}</div>
+                  <div className="featured--genres sm:text-lg text-white"><strong>Creators:</strong> {getListOfArray(movieDetail?.production_companies)}</div>
                 </div>
 
               </div>
@@ -314,9 +271,9 @@ function MovieDetail({ item, handleClickOpen, close, anotherMovies, anotherMovie
               </div>
               <div className="flex w-full justify-center content-center">
                   {showMoreOrLess ?
-                    <KeyboardArrowDownIcon onClick={() => showMoreCards(false)} className="inline-block relative bottom-[21px] text-white border-2 rounded-full border-white cursor-pointer bg-gray-900 p-1" style={{ fontSize: "45px" }} />
+                    <KeyboardArrowDownIcon onClick={() => showMoreCards(false, setShowMoreOrLess)} className="inline-block relative bottom-[21px] text-white border-2 rounded-full border-white cursor-pointer bg-gray-900 p-1" style={{ fontSize: "45px" }} />
                     :
-                    <KeyboardControlKeyIcon onClick={() => showMoreCards(true)} className="inline-block relative bottom-[21px] text-white border-2 rounded-full border-white cursor-pointer bg-gray-900 p-1" style={{ fontSize: "45px" }} />
+                    <KeyboardControlKeyIcon onClick={() => showMoreCards(true, setShowMoreOrLess)} className="inline-block relative bottom-[21px] text-white border-2 rounded-full border-white cursor-pointer bg-gray-900 p-1" style={{ fontSize: "45px" }} />
                     }
               </div>
             </div>
@@ -326,4 +283,4 @@ function MovieDetail({ item, handleClickOpen, close, anotherMovies, anotherMovie
     )
 }
 
-export default MovieDetail
+export default memo(MovieDetail);

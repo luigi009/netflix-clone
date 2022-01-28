@@ -1,24 +1,13 @@
-import React from "react";
+import React, { memo } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Tooltip from "@mui/material/Tooltip";
+import { add3Dots } from './Utilities/add3Dots';
+import { movieDate } from "./Utilities/movieDate";
 
 function SimilarMovies({
   anotherMovie,
 }) {
   const prefix = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
-  function movieDate(year) {
-    return new Date(year).getFullYear();
-  }
-
-  function add3Dots(string = "", limit) {
-    var dots = "...";
-    if (string.length > limit) {
-      string = string.substring(0, limit) + dots;
-    }
-
-    return string;
-  }
 
   return (
     <>
@@ -67,4 +56,4 @@ function SimilarMovies({
   );
 }
 
-export default SimilarMovies;
+export default memo(SimilarMovies);
