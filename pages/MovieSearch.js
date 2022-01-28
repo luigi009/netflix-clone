@@ -7,7 +7,7 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Tooltip from '@mui/material/Tooltip';
 import MovieDetail from "./MovieDetail";
-import { movieDate } from "./Utilities/movieDate";
+import { movieDate } from "../Utilities/movieDate";
 
 function MovieSearch({ item, poster, index, anotherMovies, anotherMoviesNumber, category, searchMovie }) {
 

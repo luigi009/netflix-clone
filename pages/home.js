@@ -7,7 +7,7 @@ import Header from './Header';
 import { featuredMovieSimilar } from './Tmdb';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import { getResultSearch } from '../pages/Utilities/getResultSearch'
+import { getResultSearch } from '../Utilities/getResultSearch'
 
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
 

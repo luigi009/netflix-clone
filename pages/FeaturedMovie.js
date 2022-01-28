@@ -3,7 +3,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
 import { useRouter } from 'next/router'
 import MovieDetail from "./MovieDetail";
-import { add3Dots } from './Utilities/add3Dots';
+import { add3Dots } from '../Utilities/add3Dots';
 
 const FeaturedMovie = ({ genres, backdropPath, originalName, numberOfSeasons, overview, featureId, movie, title, featureSimilarMovies }) => {
 

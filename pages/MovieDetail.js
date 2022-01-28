@@ -17,11 +17,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { add3Dots } from './Utilities/add3Dots';
-import { playIconAbleOrDisable } from './Utilities/playIconAbleOrDisable';
-import { showMoreCards } from './Utilities/showMoreCards';
-import { getListOfArray } from './Utilities/getListOfArray';
-import { movieDate } from './Utilities/movieDate';
+import { add3Dots } from '../Utilities/add3Dots';
+import { playIconAbleOrDisable } from '../Utilities/playIconAbleOrDisable';
+import { showMoreCards } from '../Utilities/showMoreCards';
+import { getListOfArray } from '../Utilities/getListOfArray';
+import { movieDate } from '../Utilities/movieDate';
 
 function MovieDetail({ item, handleClickOpen, close, anotherMovies, anotherMoviesNumber }) {
 

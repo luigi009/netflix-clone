@@ -11,9 +11,9 @@ import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import PeopleIcon from '@mui/icons-material/People';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
-import { movieDate } from "../../Utilities/movieDate";
-import { add3Dots } from "../../Utilities/add3Dots";
-import { getListOfArray } from "../../Utilities/getListOfArray";
+import { movieDate } from "../../../Utilities/movieDate";
+import { add3Dots } from "../../../Utilities/add3Dots";
+import { getListOfArray } from "../../../Utilities/getListOfArray";
 
 function movie() {
 

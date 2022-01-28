@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Tooltip from "@mui/material/Tooltip";
-import { add3Dots } from './Utilities/add3Dots';
-import { movieDate } from "./Utilities/movieDate";
+import { add3Dots } from '../Utilities/add3Dots';
+import { movieDate } from "../Utilities/movieDate";
 
 function SimilarMovies({
   anotherMovie,
