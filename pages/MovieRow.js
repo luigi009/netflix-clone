@@ -1,6 +1,6 @@
-import React, { useState, useEffect, memo } from "react";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import React, { useState, useEffect, memo, Fragment } from "react";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Movie from "./Movie";
 
 const MovieRow = ({
@@ -73,7 +73,7 @@ const MovieRow = ({
     };
 
     filter();
-  }, [searchCategory, searchMovie]);
+  }, [results, searchCategory, searchMovie]);
 
   return (
     <>
@@ -112,7 +112,7 @@ const MovieRow = ({
             {resultsNumber &&
               filteredMovies?.map((item, index) => {
                 return (
-                  <>
+                  <Fragment key={index}>
                     <Movie
                       index={index}
                       category={title}
@@ -121,7 +121,7 @@ const MovieRow = ({
                       anotherMovies={results}
                       anotherMoviesNumber={resultsNumber}
                     />
-                  </>
+                  </Fragment>
                 );
               })}
           </div>

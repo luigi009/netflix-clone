@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo, Fragment } from "react";
 import MovieSearch from "./MovieSearch";
 
 const MovieRowSearch = ({
@@ -34,7 +34,7 @@ const MovieRowSearch = ({
       }
     };
     filter();
-  }, [searchCategory, searchMovie]);
+  }, [results, searchCategory, searchMovie]);
 
   return (
     <>
@@ -42,7 +42,7 @@ const MovieRowSearch = ({
         {resultsNumber &&
           filteredMovies?.map((item, index) => {
             return (
-              <>
+              <Fragment key={index}>
                 <MovieSearch
                   index={index}
                   category={title}
@@ -52,7 +52,7 @@ const MovieRowSearch = ({
                   anotherMovies={results}
                   anotherMoviesNumber={resultsNumber}
                 />
-              </>
+              </Fragment>
             );
           })}
       </div>

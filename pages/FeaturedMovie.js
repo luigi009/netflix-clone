@@ -72,8 +72,8 @@ const FeaturedMovie = ({
             >
               {add3Dots(overview, 200)}
             </div>
-            <div className="featured--buttons mt-4">
-              <a
+            <div className="featured--buttons mt-4 cursor-pointer">
+              <div
                 onClick={() => {
                   router.push({
                     pathname: "/Movie/[MovieInfoTv]/[tvMovieInfo]",
@@ -87,8 +87,8 @@ const FeaturedMovie = ({
               >
                 <PlayArrowIcon style={{ fontSize: "35px" }} />
                 Play
-              </a>
-              <a
+              </div>
+              <div
                 onClick={handleClickOpen}
                 className="cursor-pointer featured--mylistbutton inline-block sm:text-2xl font-bold pt-2 pb-2 pr-5 pl-5 mr-3 rounded-md no-underline bg-[#6d6d6e] text-white opacity-100 hover:opacity-90 transition duration-[0.2s] ease-in-out"
               >
@@ -100,7 +100,7 @@ const FeaturedMovie = ({
                   }}
                 />
                 More Info
-              </a>
+              </div>
             </div>
           </div>
         </div>

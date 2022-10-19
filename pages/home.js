@@ -1,17 +1,18 @@
-import React, { useEffect, useState, memo } from "react";
+import React, { useEffect, useState, memo, Fragment } from "react";
 import { getHomeList, getMovieInfo } from "./Tmdb";
 import MovieRow from "./MovieRow";
 import MovieRowSearch from "./MovieRowSearch";
 import FeaturedMovie from "./FeaturedMovie";
 import Header from "./Header";
 import { featuredMovieSimilar } from "./Tmdb";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { getResultSearch } from "../Utilities/getResultSearch";
+import Image from "next/image";
 
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-const home = () => {
+const Home = () => {
   const [movieList, setMovieList] = useState([]);
   const [featuredData, setFeaturedData] = useState(null);
   const [blackHeader, setBlackHeader] = useState(false);
@@ -21,6 +22,8 @@ const home = () => {
   const [searchMovie, setSearchMovie] = useState("");
   const [filteredCategoryMovies, setFilteredCategoryMovies] = useState([]);
   const [scrollX, setScrollX] = useState(0);
+
+  const imageLoadingSource = `${prefix}/img/loading.gif`;
 
   useEffect(() => {
     const loadAll = async () => {
@@ -137,15 +140,16 @@ const home = () => {
         {!searchMovie?.length ? (
           <section className={`lists mt-[-250px]`}>
             {filteredCategoryMovies?.map((item, key) => (
-              <MovieRow
-                searchCategory={searchCategory}
-                searchMovie={searchMovie}
-                key={key}
-                title={item?.title}
-                resultsNumber={item?.items?.results.length}
-                results={item?.items?.results}
-                items={item?.items}
-              />
+              <Fragment key={key}>
+                <MovieRow
+                  searchCategory={searchCategory}
+                  searchMovie={searchMovie}
+                  title={item?.title}
+                  resultsNumber={item?.items?.results.length}
+                  results={item?.items?.results}
+                  items={item?.items}
+                />
+              </Fragment>
             ))}
           </section>
         ) : (
@@ -177,15 +181,17 @@ const home = () => {
               >
                 <section className={`lists mt-[50px] flex flex-row`}>
                   {filteredCategoryMovies?.map((item, key) => (
-                    <MovieRowSearch
-                      searchCategory={searchCategory}
-                      searchMovie={searchMovie}
-                      key={key}
-                      title={item?.title}
-                      resultsNumber={item?.items?.results.length}
-                      results={item?.items?.results}
-                      items={item?.items}
-                    />
+                    <Fragment key={key}>
+                      <MovieRowSearch
+                        searchCategory={searchCategory}
+                        searchMovie={searchMovie}
+                        key={key}
+                        title={item?.title}
+                        resultsNumber={item?.items?.results.length}
+                        results={item?.items?.results}
+                        items={item?.items}
+                      />
+                    </Fragment>
                   ))}
                 </section>
               </div>
@@ -195,12 +201,11 @@ const home = () => {
 
         {load && (
           <div className="loading fixed left-0 right-0 top-0 bottom-0 z-[99] bg-black flex justify-center items-center">
-            <img
-              src={
-                prefix +
-                "https://media.wired.com/photos/592744d3f3e2356fd800bf00/master/w_2000,c_limit/Netflix_LoadTime.gif"
-              }
+            <Image
+              src={imageLoadingSource}
               alt="Carregando"
+              width={1000}
+              height={500}
             />
           </div>
         )}
@@ -217,4 +222,4 @@ const home = () => {
   );
 };
 
-export default memo(home);
+export default memo(Home);
