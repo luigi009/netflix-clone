@@ -39,7 +39,7 @@ export default function Home() {
           </svg>
         </div>
         <div className="fixed left-[200px] font-bold text-lg">
-          <Link href="/Home">Movies</Link>
+          <Link href="/home">Movies</Link>
         </div>
         <div>
           {/* {!session ? <button onClick={()=> signIn('google') } className="flex items-center bg-[#e50914] text-white text-sm px-4 py-2 rounded">
