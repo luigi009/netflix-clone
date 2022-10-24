@@ -12,7 +12,8 @@ const MovieRow = ({
 }) => {
   const [scrollX, setScrollX] = useState(0);
   const [filteredMovies, setFilteredMovies] = useState(results || []);
-  const mobileScreen = window.matchMedia("(max-width: 480px)");
+  const mobileScreen =
+    typeof window !== "undefined" && window.matchMedia("(max-width: 480px)");
 
   const handleLeftArrow = () => {
     let x = scrollX + Math.round(window.innerWidth / 2);
