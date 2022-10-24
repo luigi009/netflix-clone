@@ -12,6 +12,7 @@ const MovieRow = ({
 }) => {
   const [scrollX, setScrollX] = useState(0);
   const [filteredMovies, setFilteredMovies] = useState(results || []);
+  const mobileScreen = window.matchMedia("(max-width: 480px)");
 
   const handleLeftArrow = () => {
     let x = scrollX + Math.round(window.innerWidth / 2);
@@ -23,7 +24,7 @@ const MovieRow = ({
 
   const handleRighttArrow = () => {
     let x = scrollX - Math.round(window.innerWidth / 2);
-    let listW = resultsNumber * 250;
+    let listW = resultsNumber * (mobileScreen ? 495 : 250);
     if (window.innerWidth - listW > x) {
       x = window.innerWidth - listW - 60;
     }
@@ -83,31 +84,30 @@ const MovieRow = ({
         onMouseOver={movieRowAble}
         onMouseLeave={movieRowDisable}
       >
-        <h2 className="ml-7 mb-1 font-bold text-2xl max-w-lg tracking-wide">
+        <h2 className="mobile:text-8xl mobile:mb-24 mobile:mt-36 mobile:w-max ml-7 mb-1 font-bold text-2xl max-w-lg tracking-wide">
           {title}
         </h2>
         <div className="movieRow--left">
           <div
             onClick={handleLeftArrow}
-            className="movieRow--left z-[99] transition duration-[0.5s] ease-in-out lg:opacity-0 cursor-pointer overflow-hidden flex justify-center items-center absolute w-[40px] h-[375px] bg-black bg-opacity-50 left-0"
+            className="movieRow--left mobile:h-screen mobile:w-24 z-[99] transition duration-[0.5s] ease-in-out lg:opacity-0 cursor-pointer overflow-hidden flex justify-center items-center absolute w-[40px] h-[375px] bg-black bg-opacity-50 left-0"
           >
-            <NavigateBeforeIcon
-              style={{ width: "50px", height: "50px", fontSize: 50 }}
-            />
+            <NavigateBeforeIcon className="mobile:text-28 mobile:h-28 mobile:w-28 text-[50px] h-[50px] w-[50px]" />
           </div>
           <div
             onClick={handleRighttArrow}
-            className="movieRow--right z-[99] transition duration-[0.5s] ease-in-out lg:opacity-0 cursor-pointer overflow-hidden flex justify-center items-center absolute w-[40px] h-[375px] bg-black bg-opacity-50 right-0"
+            className="movieRow--right mobile:h-screen mobile:w-24 mobile:right-[-169vh] z-[99] transition duration-[0.5s] ease-in-out lg:opacity-0 cursor-pointer overflow-hidden flex justify-center items-center absolute w-[40px] h-[375px] bg-black bg-opacity-50 right-0"
           >
-            <NavigateNextIcon
-              style={{ width: "50px", height: "50px", fontSize: 50 }}
-            />
+            <NavigateNextIcon className="mobile:text-28 mobile:h-28 mobile:w-28 text-[50px] h-[50px] w-[50px]" />
           </div>
         </div>
         <div className="pl-7" id={`row-${title}`}>
           <div
             className="movieRow--list"
-            style={{ marginLeft: scrollX, width: resultsNumber * 250 }}
+            style={{
+              marginLeft: scrollX,
+              width: resultsNumber * (mobileScreen ? 495 : 250),
+            }}
           >
             {resultsNumber &&
               filteredMovies?.map((item, index) => {

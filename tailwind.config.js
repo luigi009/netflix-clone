@@ -11,6 +11,12 @@ module.exports = {
       fontFamily: {
         sans: ["Roboto", ...fontFamily.sans],
       },
+      screens: {
+        mobile: {
+          min: "320px",
+          max: "480px",
+        },
+      },
     },
   },
   plugins: [],

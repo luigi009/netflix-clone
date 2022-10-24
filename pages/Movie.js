@@ -101,7 +101,7 @@ function Movie({
         id={`${category}-${index}-movie-card-${
           item?.original_title || item?.title || item?.name
         }`}
-        className="movieRow--item inline-block w-[250px] transition duration-[0.2s] ease-in-out transform scale-[0.9] hover:scale-[1]"
+        className="movieRow--item mobile:mr-60 inline-block w-[250px] transition duration-[0.2s] ease-in-out transform scale-[0.9] hover:scale-[1]"
       >
         <div
           id={`movie-img-${item?.original_title || item?.title || item?.name}`}
@@ -127,9 +127,10 @@ function Movie({
             }}
           >
             <img
-              className="w-auto cursor-pointer"
+              className="w-auto mobile:max-w-screen-sm cursor-pointer"
               src={imagePoster}
               alt={item?.original_title}
+              title={item?.original_title}
             />
           </div>
           <div

@@ -154,7 +154,7 @@ const Home = () => {
           </section>
         ) : (
           <div className="mt-20">
-            <h2 className="ml-7 mb-1 font-bold text-2xl max-w-lg tracking-wide">
+            <h2 className="mobile:text-8xl mobile:mb-24 mobile:mt-36 mobile:w-max ml-7 mb-1 font-bold text-2xl max-w-lg tracking-wide">
               Results
             </h2>
             <div>
