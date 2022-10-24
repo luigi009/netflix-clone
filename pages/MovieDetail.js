@@ -85,7 +85,7 @@ function MovieDetail({
             {i + 1}
           </div>
           <div
-            className="h-[50vh] w-10/12 bg-no-repeat bg-center h-[140px]"
+            className="h-[50vh] w-10/12 bg-no-repeat bg-center"
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/original${item?.backdrop_path})`,
               backgroundSize: "100%",

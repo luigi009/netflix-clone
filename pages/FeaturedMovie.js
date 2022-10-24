@@ -32,18 +32,20 @@ const FeaturedMovie = ({
   };
 
   useEffect(() => {
-    function handleResize() {
-      setScreenSize({
-        width: window.innerWidth,
-        height: window.innerHeight - 350,
-      });
+    if (typeof window !== "undefined") {
+      function handleResize() {
+        setScreenSize({
+          width: window.innerWidth,
+          height: window.innerHeight - 350,
+        });
+      }
+
+      window.addEventListener("resize", handleResize);
+
+      handleResize();
+
+      return () => window.removeEventListener("resize", handleResize);
     }
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
