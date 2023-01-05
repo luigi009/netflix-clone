@@ -17,20 +17,24 @@ const MovieRow = ({
     typeof window !== "undefined" && window.matchMedia("(max-width: 480px)");
 
   const handleLeftArrow = () => {
-    let x = scrollX + Math.round(window.innerWidth / 2);
-    if (x > 0) {
-      x = 0;
+    if (typeof window !== "undefined") {
+      let x = scrollX + Math.round(window.innerWidth / 2);
+      if (x > 0) {
+        x = 0;
+      }
+      setScrollX(x);
     }
-    setScrollX(x);
   };
 
   const handleRighttArrow = () => {
-    let x = scrollX - Math.round(window.innerWidth / 2);
-    let listW = resultsNumber * (mobileScreen ? 510 : 250);
-    if (window.innerWidth - listW > x) {
-      x = window.innerWidth - listW - 60;
+    if (typeof window !== "undefined") {
+      let x = scrollX - Math.round(window.innerWidth / 2);
+      let listW = resultsNumber * (mobileScreen ? 510 : 250);
+      if (window.innerWidth - listW > x) {
+        x = window.innerWidth - listW - 60;
+      }
+      setScrollX(x);
     }
-    setScrollX(x);
   };
 
   function movieRowAble() {
@@ -103,7 +107,9 @@ const MovieRow = ({
     rightArrowResponsive();
   }, []);
 
-  window.addEventListener("resize", rightArrowResponsive);
+  if (typeof window !== "undefined") {
+    window.addEventListener("resize", rightArrowResponsive);
+  }
 
   return (
     <>

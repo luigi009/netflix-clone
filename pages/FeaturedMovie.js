@@ -19,8 +19,8 @@ const FeaturedMovie = ({
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [screenSize, setScreenSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight / 1.5,
+    width: typeof window !== "undefined" && window.innerWidth,
+    height: typeof window !== "undefined" && window.innerHeight / 1.5,
   });
 
   const handleClickOpen = () => {
@@ -34,17 +34,17 @@ const FeaturedMovie = ({
   function onWindowResize() {
     let resizeTimer;
     clearTimeout(resizeTimer);
-    if (typeof window !== "undefined") {
-      resizeTimer = setTimeout(() => {
-        setScreenSize({
-          width: window.innerWidth,
-          height: window.innerHeight / 1.8,
-        });
-      }, 100);
-    }
+    resizeTimer = setTimeout(() => {
+      setScreenSize({
+        width: typeof window !== "undefined" && window.innerWidth,
+        height: typeof window !== "undefined" && window.innerHeight / 1.8,
+      });
+    }, 100);
   }
 
-  window.addEventListener("resize", onWindowResize);
+  if (typeof window !== "undefined") {
+    window.addEventListener("resize", onWindowResize);
+  }
 
   return (
     <>
