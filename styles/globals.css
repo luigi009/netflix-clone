@@ -14,18 +14,13 @@ body {
 }
 
 #header header {
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 30px;
-  background: transparent;
-  transition: all ease 0.5s;
+  grid-template-columns: auto 0.85fr auto;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  #header header {
+    grid-template-columns: auto auto;
+  }
 }
 
 .black {

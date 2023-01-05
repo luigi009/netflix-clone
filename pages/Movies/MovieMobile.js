@@ -7,9 +7,8 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Tooltip from "@mui/material/Tooltip";
-import MovieDetail from "./MovieDetail";
-import { movieDate } from "../Utilities/movieDate";
-import Image from "next/image";
+import MovieDetail from "../MovieDetail";
+import { movieDate } from "../../Utilities/movieDate";
 
 function Movie({
   item,
@@ -20,19 +19,9 @@ function Movie({
   category,
   searchMovie,
 }) {
-  const [open, setOpen] = useState(false);
-  const router = useRouter();
   const prefix = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   const imagePoster = prefix + "https://image.tmdb.org/t/p/w500" + poster;
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   function movieInformationAble() {
     let movieInfo = document.getElementById(
@@ -101,7 +90,7 @@ function Movie({
         id={`${category}-${index}-movie-card-${
           item?.original_title || item?.title || item?.name
         }`}
-        className="movieRow--item mobile:mr-60 inline-block w-[250px] transition duration-[0.2s] ease-in-out transform scale-[0.9] hover:scale-[1]"
+        className="movieRow--item sm:inline-block lg:hidden mobile:mr-72 w-[500px] transition duration-[0.2s] ease-in-out transform scale-[0.9] hover:scale-[1] mobile:inline-block mobile:mb-5 mobile:ml-5 mobile:mt-5 mobile:w-[200px] mobile:h-[300px]"
       >
         <div
           id={`movie-img-${item?.original_title || item?.title || item?.name}`}
@@ -115,19 +104,9 @@ function Movie({
                 movieInformationAbleSearch();
               }
             }}
-            onClick={() => {
-              router.push({
-                pathname: "/Movie/[MovieInfoTv]/[tvMovieInfo]",
-                query: {
-                  MovieInfoTv:
-                    item?.original_title || item?.title || item?.name,
-                  tvMovieInfo: item?.id,
-                },
-              });
-            }}
           >
             <img
-              className="w-auto mobile:max-w-screen-sm cursor-pointer"
+              className="w-auto max-w-screen-md cursor-pointer"
               src={imagePoster}
               alt={item?.original_title}
               title={item?.original_title}
@@ -139,91 +118,6 @@ function Movie({
               item?.original_title || item?.title || item?.name
             }`}
           >
-            <div className="flex justify-evenly">
-              <PlayCircleFilledIcon
-                onClick={() => {
-                  router.push({
-                    pathname: "/Movie/[MovieInfoTv]/[tvMovieInfo]",
-                    query: {
-                      MovieInfoTv:
-                        item?.original_title || item?.title || item?.name,
-                      tvMovieInfo: item?.id,
-                    },
-                  });
-                }}
-                className="inline-block cursor-pointer"
-                style={{ fontSize: "40px" }}
-              />
-
-              <Tooltip
-                title={
-                  <div>
-                    <span className="bg-white text-black text-base font-bold pt-1 pb-1 pr-2 pl-2 w-screen">
-                      Add to My List
-                    </span>
-                  </div>
-                }
-                placement="top"
-                arrow
-              >
-                <AddIcon
-                  className="inline-block border-2 rounded-full border-white cursor-pointer bg-gray-900"
-                  style={{ fontSize: "35px" }}
-                />
-              </Tooltip>
-
-              <Tooltip
-                title={
-                  <div>
-                    <span className="bg-white text-black text-base font-bold pt-1 pb-1 pr-2 pl-2 w-screen">
-                      I like this
-                    </span>
-                  </div>
-                }
-                placement="top"
-                arrow
-              >
-                <ThumbUpOffAltIcon
-                  className="inline-block border-2 rounded-full border-white cursor-pointer bg-gray-900 p-1"
-                  style={{ fontSize: "35px" }}
-                />
-              </Tooltip>
-
-              <Tooltip
-                title={
-                  <div>
-                    <span className="bg-white text-black text-base font-bold pt-1 pb-1 pr-2 pl-2 w-screen">
-                      Not for me
-                    </span>
-                  </div>
-                }
-                placement="top"
-                arrow
-              >
-                <ThumbDownOffAltIcon
-                  className="inline-block border-2 rounded-full border-white cursor-pointer bg-gray-900 p-1"
-                  style={{ fontSize: "35px" }}
-                />
-              </Tooltip>
-
-              <Tooltip
-                title={
-                  <div>
-                    <span className="bg-white text-black text-base font-bold pt-1 pb-1 pr-2 pl-2 w-screen">
-                      More info
-                    </span>
-                  </div>
-                }
-                placement="top"
-                arrow
-              >
-                <KeyboardArrowDownIcon
-                  onClick={handleClickOpen}
-                  className="inline-block border-2 rounded-full border-white cursor-pointer bg-gray-900 p-1"
-                  style={{ fontSize: "35px" }}
-                />
-              </Tooltip>
-            </div>
             <div className="featured--info text-lg font-bold mt-4">
               <div className="featured--points inline-block pl-1 mr-4 text-[#46d369]">
                 {item?.vote_average}{" "}
@@ -242,15 +136,6 @@ function Movie({
           </div>
         </div>
       </div>
-
-      {/* More Info */}
-      <MovieDetail
-        item={item}
-        handleClickOpen={open}
-        close={handleClose}
-        anotherMovies={anotherMovies}
-        anotherMoviesNumber={anotherMoviesNumber}
-      />
     </>
   );
 }

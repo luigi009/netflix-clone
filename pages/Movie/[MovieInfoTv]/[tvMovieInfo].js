@@ -67,14 +67,14 @@ function Movie() {
             }}
           >
             <div
-              className="featured--horizontal flex flex-col justify-center pl-8 pb-10 pt-9 w-[inherit] h-[inherit]"
+              className="featured--horizontal flex flex-col justify-center pl-8 pb-10 pt-9 w-[inherit] h-[inherit] mobile:pt-20"
               style={{
                 background:
                   "linear-gradient(to right, rgb(17 17 17 / 81%) 30%, transparent 70%)",
               }}
             >
               <div
-                className="featured--name text-4xl font-bold max-w-[40%]"
+                className="featured--name text-4xl font-bold max-w-[40%] mobile:max-w-full"
                 style={{ textShadow: "2px 2px 4px rgb(0 0 0 / 45%)" }}
               >
                 {movie?.original_title}
@@ -108,51 +108,51 @@ function Movie() {
                 {add3Dots(movie?.overview, 200)}
               </div>
               <div className="text-lg font-normal mt-4">
-                <div className="featured--genres sm:text-lg text-[#999] max-w-[40%]">
+                <div className="featured--genres sm:text-lg text-[#999] max-w-[40%] mobile:max-w-full">
                   Genres: {getListOfArray(movie?.genres)}
                 </div>
-                <div className="featured--genres sm:text-lg text-[#999] max-w-[40%]">
+                <div className="featured--genres sm:text-lg text-[#999] max-w-[40%] mobile:max-w-full">
                   Creators: {getListOfArray(movie?.production_companies)}
                 </div>
               </div>
               <div className="font-normal mt-6 text-xl">
-                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100">
+                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100 mobile:max-w-full">
                   <ThumbUpIcon
                     style={{ margin: "0px 15px", fontSize: "25px" }}
                   />
                   Rate This Title
                 </div>
-                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100">
+                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100 mobile:max-w-full">
                   <PlayArrowIcon
                     style={{ margin: "0px 10px", fontSize: "35px" }}
                   />
                   Play {movie?.number_of_seasons && "Season 1: Episode 1"}
                 </div>
                 {movie?.number_of_seasons ? (
-                  <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100">
+                  <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100 mobile:max-w-full">
                     <AutoAwesomeMotionIcon
                       style={{ margin: "0px 15px", fontSize: "25px" }}
                     />
                     Episodes & More
                   </div>
                 ) : null}
-                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100">
+                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100 mobile:max-w-full">
                   <MoreIcon style={{ margin: "0px 15px", fontSize: "25px" }} />
                   More Like This
                 </div>
-                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100">
+                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100 mobile:max-w-full">
                   <CommentIcon
                     style={{ margin: "0px 15px", fontSize: "25px" }}
                   />
                   Audio & Subtitles
                 </div>
-                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100">
+                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100 mobile:max-w-full">
                   <PlaylistAddIcon
                     style={{ margin: "0px 15px", fontSize: "25px" }}
                   />
                   Add to My List
                 </div>
-                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100">
+                <div className="flex items-center max-w-[40%] border-2 border-transparent hover:border-2 hover:border-[#fff] transition duration-[0.2s] ease-in-out p-1 mb-2 cursor-pointer text-[#fff] opacity-50 hover:opacity-100 mobile:max-w-full">
                   <PeopleIcon
                     style={{ margin: "0px 15px", fontSize: "25px" }}
                   />

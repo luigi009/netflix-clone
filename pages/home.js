@@ -210,12 +210,14 @@ const Home = () => {
           </div>
         )}
 
-        <footer className="mt-7 mb-7 text-center">
-          Feito por Luigi Fanaro
-          <br />
-          Direitos de imagem para Netflix
-          <br />
-          Os dados foram utilizados do site Themoviedb.org
+        <footer className="mt-7 mb-7">
+          <p className="text-center w-full mobile:absolute mobile:left-[50%] mobile:mt-10 mobile:mb-10 mobile:w-max mobile:text-5xl">
+            Feito por Luigi Fanaro
+            <br />
+            Direitos de imagem para Netflix
+            <br />
+            Os dados foram utilizados do site Themoviedb.org
+          </p>
         </footer>
       </div>
     </>
