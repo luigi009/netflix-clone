@@ -1,4 +1,44 @@
-# Next.js + Tailwind CSS Example
+# Netflix Clone
+
+## Description
+
+This is a Netflix clone built with Next.js and Tailwind CSS. It uses the [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction) to fetch movies and TV shows.
+
+## Demo
+
+[Netflix Clone](https://netflix-clone-git-master-luigi009.vercel.app/)
+
+## Installation
+
+```bash
+$ npm install
+```
+
+## Running the app
+
+```bash
+# development
+$ npm run dev
+
+# production mode
+$ npm run build
+$ npm run start
+```
+
+## Test
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+
+## Next.js + Tailwind CSS Example
 
 This example shows how to use [Tailwind CSS](https://tailwindcss.com/) (v2.1) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
 
