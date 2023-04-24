@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a Netflix clone built with Next.js and Tailwind CSS. It uses the [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction) to fetch movies and TV shows.
+This is a Netflix clone built with [Next.js](https://nextjs.org/), [TailwindCSS](https://tailwindcss.com/) and [MaterialUI](https://mui.com/). It uses the [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction) to fetch movies and TV shows.
 
 ## Demo
 
